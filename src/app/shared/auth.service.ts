@@ -18,7 +18,9 @@ export class AuthService {
   getAuthInfo(): void {
     const token = localStorage.getItem('TOKEN');
 
-    if (!token) return;
+    if (!token) {
+      return;
+    }
 
     this.http.get<AuthInfo>('http://localhost:5000/api/auth', {
       headers: { Authorization: token },
@@ -51,7 +53,7 @@ export class AuthService {
       .pipe(tap(response => {
         if (response.token) {
           localStorage.setItem('TOKEN', response.token);
-  
+
           this.getAuthInfo();
         }
       })).subscribe();

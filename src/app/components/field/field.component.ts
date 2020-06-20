@@ -11,9 +11,9 @@ export interface Option {
   styleUrls: ['./field.component.sass'],
 })
 export class FieldComponent {
-  @Input() value: string = '';
-  @Input() placeholder: string = '';
-  @Input() name: string = '';
+  @Input() value = '';
+  @Input() placeholder = '';
+  @Input() name = '';
   @Input() rows: string | number = 1;
   @Input() type: 'text' | 'textarea' | 'date' | 'select' = 'text';
   @Input() options: Option[];

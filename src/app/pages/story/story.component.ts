@@ -12,7 +12,7 @@ export class StoryComponent implements OnInit {
   storyURL: string;
 
   constructor(public storiesService: StoriesService, private route: ActivatedRoute) {
-    this.storyURL = route.snapshot.params['id'];
+    this.storyURL = route.snapshot.params.id;
   }
 
   nextPage(pageId: string): void {

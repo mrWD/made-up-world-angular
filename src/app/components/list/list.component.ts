@@ -1,4 +1,4 @@
-import { Component, Input, ContentChild, TemplateRef } from "@angular/core";
+import { Component, Input, ContentChild, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-list',

@@ -12,7 +12,9 @@ export class UserListComponent implements OnInit {
   constructor(public authService: AuthService, public usersService: UsersService) {}
 
   isFollowed({ followers }: { followers: { login: string }[] }): boolean {
-    if (!this.authService.authInfo || !this.authService.authInfo.login) return false;
+    if (!this.authService.authInfo || !this.authService.authInfo.login) {
+      return false;
+    }
 
     return followers.every((item) => this.isNotUser(item.login));
   }

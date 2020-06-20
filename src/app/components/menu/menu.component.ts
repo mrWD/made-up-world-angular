@@ -16,5 +16,5 @@ export class MenuComponent {
 
   showAuth(formType: 'signin' | 'signup' | '' = ''): void {
     this.formType = formType;
-  };
+  }
 }

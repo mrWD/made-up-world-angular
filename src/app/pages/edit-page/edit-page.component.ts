@@ -11,7 +11,7 @@ export interface Form {
 }
 
 @Component({
-  selector: '',
+  selector: 'app-edit-page',
   templateUrl: './edit-page.component.html',
   styleUrls: ['./edit-page.component.sass'],
 })
@@ -33,7 +33,7 @@ export class EditPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
   ) {
-    this.pageId = route.snapshot.params['id'];
+    this.pageId = route.snapshot.params.id;
   }
 
   get hasTitle() {

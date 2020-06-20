@@ -33,7 +33,9 @@ const groupPageList = (filteredArr: Page[], arr: Page[][]): Page[][] => {
     const index1 = nextPages.indexOf(item1.pageId);
     const index2 = nextPages.indexOf(item2.pageId);
 
-    if (index1 < index2) return -1;
+    if (index1 < index2) {
+      return -1;
+    }
 
     return 1;
   });
@@ -69,17 +71,21 @@ export class EditStoryComponent implements OnInit {
     public storiesService: StoriesService,
     private activatedRouter: ActivatedRoute,
   ) {
-    this.storyId = activatedRouter.snapshot.params['id'];
+    this.storyId = activatedRouter.snapshot.params.id;
   }
 
   get groupedPageList() {
     const { pageList } = this.storiesService;
 
-    if (!pageList) return null;
+    if (!pageList) {
+      return null;
+    }
 
     const first: Page | undefined = pageList.find((item: Page) => item.isFirst);
 
-    if (!first) return [pageList];
+    if (!first) {
+      return [pageList];
+    }
 
     const newArr: Page[][] = [[first]];
     const filtered = pageList.filter((item: Page) => !item.isFirst);

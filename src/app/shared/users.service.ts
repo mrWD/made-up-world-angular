@@ -59,7 +59,9 @@ export class UsersService {
   follow(login: string): void {
     const token = localStorage.getItem('TOKEN');
 
-    if (!token) return;
+    if (!token) {
+      return;
+    }
 
     this.http.post('http://localhost:5000/api/users/follow', { login }, {
       headers: { Authorization: token },
@@ -70,7 +72,9 @@ export class UsersService {
   unfollow(login: string): void {
     const token = localStorage.getItem('TOKEN');
 
-    if (!token) return;
+    if (!token) {
+      return;
+    }
 
     this.http.post('http://localhost:5000/api/users/unfollow', { login }, {
       headers: { Authorization: token },

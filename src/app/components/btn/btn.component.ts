@@ -11,10 +11,10 @@ import {
   styleUrls: ['./btn.component.sass'],
 })
 export class BtnComponent {
-  @Input() isSmall: boolean = false;
-  @Input() isError: boolean = false;
-  @Input() isText: boolean = false;
-  @Input() disabled: boolean = false;
+  @Input() isSmall = false;
+  @Input() isError = false;
+  @Input() isText = false;
+  @Input() disabled = false;
 
   @Output() click = new EventEmitter();
 

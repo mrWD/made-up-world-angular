@@ -15,7 +15,7 @@ export class StoryListComponent implements OnInit {
   }
 
   getStoryUrl(value: string): string {
-    return `/story/${value}`
+    return `/story/${value}`;
   }
 
   getUserUrl(value: string): string {

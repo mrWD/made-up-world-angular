@@ -30,7 +30,7 @@ export class SignUpComponent {
 
   setImage({ target }: ProgressEvent<FileReader>): void {
     this.userImg = target && target.result;
-  };
+  }
 
   uploadFile({ target }: { target: HTMLInputElement }) {
     if (target.files && target.files[0]) {
@@ -42,7 +42,7 @@ export class SignUpComponent {
 
       this.form.file = target.files[0];
     }
-  };
+  }
 
   handleSubmit(value) {
     if (value === 'signup') {

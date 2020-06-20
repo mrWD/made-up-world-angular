@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
     public storiesService: StoriesService,
     private route: ActivatedRoute,
   ) {
-    this.userId = route.snapshot.params['id'];
+    this.userId = route.snapshot.params.id;
   }
 
   getPhotoUrl(value: string): string {
