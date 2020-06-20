@@ -1,0 +1,53 @@
+@import "../variables"
+
+.inner
+  position: relative
+  display: flex
+  max-width: 790px
+  margin-left: auto
+  margin-right: auto
+  padding: 30px 15px
+
+  +for-tablet-up
+    padding-top: 50px
+    padding-bottom: 50px
+
+  &:before,
+  &:after
+    position: absolute
+    left: 0
+    right: 0
+    width: 100%
+    height: 60px
+    background-position: center
+    background-repeat: no-repeat
+    background-size: 100% 100%
+    content: ''
+
+    +for-tablet-up
+      height: 90px
+
+  &:before
+    top: 0
+    background-image: url('../assets/images/inner-top-bg.png')
+
+  &:after
+    bottom: 0
+    background-image: url('../assets/images/inner-bottom-bg.png')
+
+  &__content
+    flex-grow: 1
+    padding-top: 40px
+    padding-bottom: 50px
+    padding-left: 20px
+    padding-right: 20px
+    background-image: url('../assets/images/inner-bg.png')
+    background-position: top center
+    background-repeat: repeat-y
+    background-size: 100% auto
+
+    +for-tablet-up
+      padding-top: 60px
+      padding-bottom: 80px
+      padding-left: 50px
+      padding-right: 50px

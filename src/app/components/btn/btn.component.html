@@ -1,0 +1,11 @@
+<button
+  class="btn"
+  [class.btn_small]="isSmall"
+  [class.btn_text]="isText"
+  [class.btn_error]="isError"
+  [disabled]="disabled"
+  type="button"
+  (click)="handleClick($event)"
+>
+  <ng-content></ng-content>
+</button>

@@ -1,0 +1,48 @@
+<ng-container [ngSwitch]="type">
+  <textarea
+    class="field"
+    *ngSwitchCase="'textarea'"
+    [ngModel]="value"
+    [rows]="rows"
+    [placeholder]="placeholder"
+    [name]="name"
+    (ngModelChange)="handleInput($event)"
+  ></textarea>
+
+  <input
+    class="field field_date"
+    [class.field_empty]="!value"
+    *ngSwitchCase="'date'"
+    type="date"
+    [ngModel]="value"
+    [name]="name"
+    [attr.data-value]="value | date:'dd.MM.yyyy' || placeholder"
+    (ngModelChange)="handleInput($event)"
+  />
+
+  <select
+    class="field"
+    *ngSwitchCase="'select'"
+    [ngModel]="value"
+    [name]="name"
+    [attr.placeholder]="placeholder"
+  >
+    <option
+      *ngFor="let item of options"
+      [value]="item.value"
+    >
+      {{ item.label }}
+    </option>(
+  </select>
+
+  <input
+    class="field"
+    *ngSwitchDefault
+    [ngModel]="value"
+    [placeholder]="placeholder"
+    [type]="type"
+    [name]="name"
+    (ngModelChange)="handleInput($event)"
+  />
+
+</ng-container>

@@ -1,0 +1,69 @@
+<form class="sign-up">
+  <app-btn
+    class="sign-up__close"
+    [isSmall]="true"
+    (click)="close.emit()"
+  >
+    <app-svg icon="cross"></app-svg>
+  </app-btn>
+
+  <ng-template *ngIf="formType === 'signup'">
+    <label for="photo" class="sign-up__label">Photo</label>
+
+    <label class="sign-up__photo field" *ngIf="userImg; else AddPhotoText" for="photo">
+      <img class="sign-up__photo-img" [src]="userImg" alt="" width="126" />
+    </label>
+
+    <label class="sign-up__field field" #AddPhotoText for="photo">Add your photo</label>
+
+    <input
+      class="sign-up__upload"
+      id="photo"
+      name="photo"
+      type="file"
+      accept="image/jpg, image/jpeg, image/png"
+      (change)="uploadFile($event)"
+    />
+  </ng-template>
+
+  <label class="sign-up__label" for="login">Username</label>
+
+  <app-field
+    class="sign-up__field"
+    id="login"
+    [(value)]="form.login"
+    name="login"
+    type="text"
+  ></app-field>
+
+  <label class="sign-up__label" for="password">Password</label>
+
+  <app-field
+    class="sign-up__field"
+    id="password"
+    [(value)]="form.password"
+    name="password"
+    type="password"
+  ></app-field>
+
+  <label
+    class="sign-up__label"
+    *ngIf="formType === 'signup'"
+    for="passwordConfirm"
+  >
+    Confirm Password
+  </label>
+
+  <app-field
+    class="sign-up__field"
+    id="passwordConfirm"
+    *ngIf="formType === 'signup'"
+    [(value)]="form.passwordConfirm"
+    name="passwordConfirm"
+    type="password"
+  ></app-field>
+
+  <app-btn class="sign-up__btn" (click)="handleSubmit(formType)">
+    {{ formType === 'signup' ? 'Sign Up' : 'Sign In' }}
+  </app-btn>
+</form>

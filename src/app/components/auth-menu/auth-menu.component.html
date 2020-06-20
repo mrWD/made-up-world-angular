@@ -1,0 +1,31 @@
+<ul class="auth-menu">
+  <li class="auth-menu__item">
+    <a
+      class="auth-menu__btn auth-menu__link"
+      [routerLink]="getUserPage()"
+      (click)="click.emit()"
+    >
+      My Info
+    </a>
+  </li>
+
+  <li class="auth-menu__item">
+    <a
+      class="auth-menu__btn auth-menu__link"
+      routerLink="edit-page/"
+      (click)="click.emit()"
+    >
+      New Story
+    </a>
+  </li>
+
+  <li class="auth-menu__item">
+    <app-btn
+      class="auth-menu__btn"
+      [isText]="true"
+      (click)="handleSignOut()"
+    >
+      Logout
+    </app-btn>
+  </li>
+</ul>

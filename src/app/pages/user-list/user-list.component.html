@@ -1,0 +1,39 @@
+<section class="user-list">
+  <h1>All users</h1>
+
+  <span *ngIf="!usersService.userList">No users</span>
+
+  <ul class="user-list__containerr" *ngIf="usersService.userList">
+    <li
+      class="user-list__item"
+      *ngFor="let item of usersService.userList"
+    >
+      <a class="user-list__link" [routerLink]="getUserLink(item.login)">
+        <app-photo class="user-list__photo"
+          [src]="getPhotoUrl(item.photo)"
+          [alt]="item.login"
+          width="50"
+          height="50"
+        ></app-photo>
+
+        <span class="user-list__text">{{ item.login }}</span>
+      </a>
+
+      <app-btn
+        class="user-list__btn"
+        *ngIf="isNotUser(item.login) && isFollowed(item)"
+        [isSmall]="true"
+        (click)="usersService.follow(item.login)"
+      >
+        <app-svg icon="follow"></app-svg>
+      </app-btn>
+    </li>
+  </ul>
+
+  <app-pagination
+    *ngIf="usersService.pageCount > 1"
+    [pageNumber]="usersService.pageNumber"
+    [pageCount]="usersService.pageCount"
+    (click)="handlePageChange($event)"
+  ></app-pagination>
+</section>

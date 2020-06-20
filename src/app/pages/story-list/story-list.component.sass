@@ -1,0 +1,26 @@
+@import "../../../variables"
+
+.story-list
+  &__item
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    justify-content: space-between
+
+    &:not(:last-child)
+      margin-bottom: 20px
+
+  &__name-wrapper
+    position: relative
+    width: 100%
+    margin-bottom: 5px
+
+  &__name
+    font-size: $font-size + 11
+    text-decoration: none
+    color: $black
+
+  &__author
+    font-size: $font-size + 2
+    text-decoration: none
+    color: $black

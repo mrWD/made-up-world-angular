@@ -1,0 +1,28 @@
+<section class="story" *ngIf="storiesService.currentStory">
+  <div class="story__head">
+    <app-btn
+      [isSmall]="true"
+      (click)="storiesService.getStory({ storyURL: storyURL })"
+    >
+      <app-svg icon="return"></app-svg>
+    </app-btn>
+
+    <a class="story__link" [routerLink]="getUserLink(storiesService.currentStory.owner.login)">
+      {{ storiesService.currentStory.owner.login }}
+    </a>
+  </div>
+
+  <h1 class="story__title">{{ storiesService.currentStory.title }}</h1>
+
+  <p class="story__text">{{ storiesService.currentStory.body }}</p>
+
+  <ul class="story__list" *ngIf="storiesService.currentStory.options[0]">
+    <ng-template *ngFor="let item of storiesService.currentStory.options; let i = $index">
+      <li class="story__el" *ngIf="item && storiesService.currentStory.nextPages[i]">
+        <app-btn class="story__btn" (click)="nextPage(storiesService.currentStory.nextPages[i])">
+          {{ item }}
+        </app-btn>
+      </li>
+    </ng-template>
+  </ul>
+</section>

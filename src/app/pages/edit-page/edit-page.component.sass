@@ -1,0 +1,35 @@
+.edit-page
+  display: flex
+  flex-direction: column
+  align-items: center
+
+  &__list
+    align-self: stretch
+    margin-bottom: 15px
+
+  &__el
+    display: flex
+
+    &:not(:last-child)
+      margin-bottom: 15px
+
+  &__field
+    align-self: stretch
+    margin-bottom: 30px
+
+    &_area ::ng-deep .field
+      min-height: 285px
+
+  &__option
+    flex-grow: 1
+    margin-right: 30px
+
+    & ::ng-deep .field
+      height: 100%
+
+  &__btn
+    &:not(:last-child)
+      margin-bottom: 30px
+
+    & ::ng-deep .btn
+      min-width: 260px

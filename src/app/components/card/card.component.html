@@ -1,0 +1,62 @@
+<article class="card">
+  <div class="card__head" [ngStyle]="addBackground(card.id)">
+    <app-btn
+      class="card__btn card__pin"
+      *ngIf="changedCard && changedCard !== card.id"
+      [isSmall]="true"
+      (click)="setPin.emit(card.id)"
+      >
+      <app-svg class="btn__icon" icon="pin"></app-svg>
+    </app-btn>
+
+    <app-btn
+      class="card__btn"
+      *ngIf="!card.isFirst"
+      [isSmall]="true"
+      (click)="setFirst.emit(card.id)"
+    >
+      Set as #1
+    </app-btn> 
+
+    <span class="card__btn" *ngIf="card.isFirst">The #1</span>
+
+    <a class="card__btn card__link" [routerLink]="getPageLink(card.id)">
+      <app-svg class="btn__icon" icon="edit"></app-svg>
+    </a>
+
+    <app-btn class="card__btn" [isSmall]="true" (click)="removePage.emit(card.id)">
+      <app-svg class="btn__icon" icon="cross"></app-svg>
+    </app-btn>
+  </div>
+
+  <div class="card__body">
+    <p class="card__title">{{ card.body }}</p>
+
+    <app-btn
+      *ngIf="!card.options || !card.options[0]"
+      [isSmall]="true"
+      (click)="changePin.emit({ id: 0, index: 0 })"
+      >
+      Bind next page
+    </app-btn>
+
+    <ng-template [ngIf]="card.options">
+      <app-btn
+        class="card__btn tooltip-trigger"
+        *ngFor="let page of card.options; index as i"
+        [isSmall]="true"
+        (click)="changePin.emit({ id: card.id, index: i })"
+        >
+        {{ i + 1 }}
+
+        <div
+          class="card__color"
+          *ngIf="card.nextPages && card.nextPages[i]"
+          [ngStyle]="addBackground(card.nextPages[i])"
+        ></div>
+
+        <app-tooltip [text]="page"></app-tooltip>
+      </app-btn>
+    </ng-template>
+  </div>
+</article>

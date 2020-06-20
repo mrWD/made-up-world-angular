@@ -1,0 +1,22 @@
+<div class="list">
+  <h2 class="list__title">{{ title }} ({{ list.length }})</h2>
+
+  <ul class="list__content" *ngIf="list && list[0]">
+    <li
+      class="list__item"
+      *ngFor="let item of list.slice(0, maxLength); index as i"
+      >
+      <a class="list__link" [routerLink]="getLink(item[routeProp])">{{ item[propName] }}</a>
+
+      <ng-container *ngTemplateOutlet="lineContentTmpl, context: { $implicit: item }"></ng-container>
+    </li>
+  </ul>
+  
+  <app-btn
+    *ngIf="list && list.length > LENGTH_LIMIT"
+    [isSmall]="true"
+    (click)="toggleLimit()"
+    >
+    {{ list.length === maxLength ? 'Show Less' : 'Show All' }}
+  </app-btn> 
+</div>

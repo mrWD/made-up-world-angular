@@ -1,0 +1,46 @@
+@import '../../../variables'
+
+%text
+  font-family: $main-font-stack
+  font-size: $font-size + 6
+  line-height: 1.2
+  font-weight: 600
+  color: $black
+
+.field
+  @extend %text
+
+  position: relative
+  max-width: 100%
+  width: 100%
+  padding: 5px 10px
+  border: 2px solid $main-color-darkest
+  border-radius: 4px
+  box-shadow: inset 0 0 20px $main-color-darkest
+  background-color: $main-color-light
+
+  &__textarea
+    resize: vertical
+
+  &:after
+    position: absolute
+    top: 5px
+    left: 16px
+    right: 50px
+    display: inline-block
+    content: attr(data-value)
+    pointer-events: none
+
+    @extend %text
+
+  &::-webkit-datetime-edit,
+  &::-webkit-inner-spin-button,
+  &::-webkit-clear-button
+    opacity: 0
+
+  &_date
+    height: 38px
+
+  &_empty
+    &:after
+      color: #757575

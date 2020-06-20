@@ -1,0 +1,38 @@
+@import '../../../variables'
+
+.user-list
+  &__container
+    display: flex
+    flex-wrap: wrap
+
+  &__item
+    display: flex
+    align-items: center
+    width: 100%
+
+    &:not(:last-child)
+      margin-bottom: 15px
+
+  &__link
+    flex-grow: 1
+    display: flex
+    align-items: center
+    margin-right: 15px
+    overflow: hidden
+    text-decoration: none
+
+  &__photo
+    margin-right: 15px
+    padding: 2px 5px
+
+  &__text
+    max-width: calc(100% - 65px)
+    overflow: hidden
+    font-size: $font-size + 10
+    font-weight: 600
+    white-space: nowrap
+    text-overflow: ellipsis
+    color: $black
+
+  &__btn:not(:last-child)
+    margin-right: 15px

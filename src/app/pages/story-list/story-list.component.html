@@ -1,0 +1,31 @@
+<div class="story-list">
+  <app-filters></app-filters>
+
+  <ul class="story-list__content" *ngIf="storiesService.storyList">
+    <li class="story-list__item" *ngFor="let item of storiesService.storyList">
+      <div class="story-list__name-wrapper">
+        <a class="story-list__name tooltip-trigger" [routerLink]="getStoryUrl(item.storyURL)">
+          {{ item.title }}
+        </a>
+
+        <app-tooltip [text]="item.body"></app-tooltip>
+      </div>
+
+      <a
+        class="story-list__author"
+        [routerLink]="getUserUrl(item.owner.login)"
+      >
+        {{ item.owner.login }}
+      </a>
+
+      <span class="story-list__author">{{ item.createdAt | date:'dd.MM.yyyy' }}</span>
+    </li>
+  </ul>
+
+  <app-pagination
+    *ngIf="storiesService.pageCount > 1"
+    [pageNumber]="storiesService.pageNumber"
+    [pageCount]="storiesService.pageCount"
+    (click)="goToPage($event)"
+  ></app-pagination>
+</div>

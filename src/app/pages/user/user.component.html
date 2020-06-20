@@ -1,0 +1,112 @@
+<section class="user">
+  <span class="user__text" *ngIf="!usersService.userInfo; else UserInfo">No user</span>
+
+  <ng-template #UserInfo>
+    <h1 class="user__title">{{ usersService.userInfo.login }}</h1>
+
+    <app-photo
+      class="user__photo"
+      [src]="getPhotoUrl(usersService.userInfo.photo)"
+      [alt]="usersService.userInfo.login"
+      width="200"
+    ></app-photo>
+
+    <div
+      class="user__btn-list"
+      *ngIf="authService.authInfo && authService.authInfo.login && !isUser"
+      >
+      <span class="user__text" *ngIf="isFollower">The one of your fans ;)</span>
+
+      <span class="user__text" *ngIf="isFollowed">You follow the user</span>
+
+      <app-btn class="user__btn"
+        *ngIf="!isFollowed"
+        (click)="usersService.follow(usersService.userInfo.login)"
+        >
+        Follow
+      </app-btn>
+    </div>
+
+    <hr class="user__separator">
+
+    <app-list
+      class="user__stories"
+      *ngIf="storiesService.storyList && storiesService.storyList[0]"
+      title="Stories"
+      routeName="story"
+      routeProp="storyURL"
+      propName="title"
+      [list]="storiesService.storyList"
+      >
+      <ng-template #lineContent let-slotData *ngIf="isUser()">
+        <app-btn
+          class="user__btn"
+          [isSmall]="true"
+          [title]="checkPublishing(slotData) ? 'Unpublish' : 'Publish'"
+          (click)="togglePublishment(slotData)"
+          >
+          <app-svg [icon]="checkPublishing(slotData) ? 'hide' : 'show'"></app-svg>
+        </app-btn>
+
+        <a
+          class="user__btn user__link"
+          [routerLink]="getStoryLink(slotData.storyURL)"
+          title="Edit story"
+        >
+          <app-svg icon="edit"></app-svg>
+        </a>
+
+        <app-btn
+          class="user__btn"
+          [isSmall]="true"
+          title="Remove story"
+          (click)="storiesService.removeStory(slotData.storyURL)"
+          >
+          <app-svg icon="cross"></app-svg>
+        </app-btn>
+      </ng-template>
+    </app-list>
+
+    <app-list
+      class="user__follow-list"
+      *ngIf="usersService.userInfo && usersService.userInfo.followings"
+      title="Followings"
+      routeName="user"
+      routeProp="login"
+      propName="login"
+      [list]="usersService.userInfo.followings"
+      >
+      <ng-template #lineContent let-slotData>
+        <app-btn
+          class="user__btn"
+          *ngIf="isUser()"
+          [isSmall]="true"
+          (click)="usersService.unfollow(slotData.login)"
+          >
+          <app-svg icon="cross"></app-svg>
+        </app-btn>
+      </ng-template>
+    </app-list>
+
+    <app-list
+      class="user__follow-list"
+      *ngIf="usersService.userInfo && usersService.userInfo.followers"
+      title="Followers"
+      routeName="user"
+      routeProp="login"
+      propName="login"
+      [list]="usersService.userInfo.followers"
+      >
+      <ng-template #lineContent let-slotData>
+        <app-btn
+          class="user__btn"
+          *ngIf="isUser && isFollowedFilter(usersService.userInfo.followings, slotData)"
+          [isSmall]="true"
+          (click)="usersService.follow(slotData.login)"
+          >
+          <app-svg icon="follow"></app-svg>
+        </app-btn>
+      </ng-template>
+    </app-list>
+  </ng-template>
+</section>

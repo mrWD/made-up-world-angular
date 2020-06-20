@@ -1,0 +1,53 @@
+<section class="edit-story" *ngIf="storiesService.pageList && storiesService.pageList[0]">
+  <h1 class="edit-story__title">{{ storiesService.pageList[0].title }}</h1>
+
+  <ul class="edit-story__list" *ngFor="let pageList of groupedPageList">
+    <li class="edit-story__item" *ngFor="let item of pageList">
+      <app-card
+        [card]="item"
+        [changedCard]="indexParent"
+        (changePin)="changePin($event)"
+        (setFirst)="setFirst($event)"
+        (setPin)="setPin($event)"
+        (removePage)="pagesService.removePage($event)"
+      ></app-card>
+    </li>
+  </ul>
+
+  <ng-template [ngIf]="changes[0]">
+    <app-btn class="edit-story__btn" (click)="changes = []">
+      Cancel Changes
+    </app-btn>
+
+    <app-btn class="edit-story__btn" (click)="saveChanges()">
+      Save Changes
+    </app-btn>
+  </ng-template>
+
+  <ng-template [ngIf]="!changes[0]">
+    <a class="edit-story__btn  edit-story__link" routerLink="/edit-page">Add New Page</a>
+
+    <app-btn
+      class="edit-story__btn"
+      (click)="storiesService.removeStory(storiesService.pageList[0].storyURL)"
+      >
+      Remove Story
+    </app-btn>
+
+    <app-btn
+      class="edit-story__btn"
+      *ngIf="storiesService.pageList[0].isPublished"
+      (click)="storiesService.unpublishStory(storiesService.pageList[0].storyURL)"
+      >
+      Unpublish Story
+    </app-btn>
+
+    <app-btn
+      class="edit-story__btn"
+      *ngIf="!storiesService.pageList[0].isPublished"
+      (click)="storiesService.publishStory(storiesService.pageList[0].storyURL)"
+      >
+      Publish Story
+    </app-btn>
+  </ng-template>
+</section>

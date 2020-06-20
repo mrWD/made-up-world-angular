@@ -1,0 +1,28 @@
+@import '../../../variables'
+
+.list
+  &__content
+    flex-basis: 100%
+
+    &:not(:last-child)
+      margin-bottom: 15px
+
+  &__title
+    flex-basis: 100%
+    padding-top: 30px
+
+  &__item
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+
+    &:not(:last-child)
+      margin-bottom: 15px
+
+  &__link
+    font-size: $font-size + 6
+    text-decoration: none
+    color: $black
+
+    &:not(:last-child)
+      margin-right: 10px

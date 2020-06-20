@@ -1,0 +1,71 @@
+@import '../../../variables'
+
+.card
+  box-shadow: 0 0 10px $main-color-darkest
+  background-color: $main-color
+  border-radius: 4px
+
+  &__head
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    padding: 10px 15px 15px
+    border-radius: 4px 4px 0 0
+
+  &__body
+    padding: 10px 15px 15px
+
+  &__btn
+
+    &:not(:last-child)
+      margin-right: 10px
+
+    & ::ng-deep .btn
+      position: relative
+      flex-direction: column
+
+    & ::ng-deep .svg
+      width: 14px
+      height: 14px
+
+  &__pin:not(:last-child)
+    margin-right: auto
+
+  &__title
+    flex-grow: 1
+    margin-top: 0
+    margin-bottom: 0
+    text-align: left
+    color: $black
+
+    &:not(:last-child)
+      margin-bottom: 15px
+
+  &__color
+    width: 20px
+    height: 20px
+
+  &__link
+    display: inline-flex
+    align-items: center
+    justify-content: center
+    flex-wrap: wrap
+    padding: 2px 6px
+    border: 2px solid $main-color-darkest
+    border-radius: 4px
+    background-color: $main-color-light
+    background-image: radial-gradient($main-color-dark, transparent)
+
+    font-family: $main-font-stack
+    font-size: $font-size
+    line-height: 1.2
+    font-weight: 600
+    color: $black
+    text-decoration: none
+
+    cursor: pointer
+
+    transition: background-color 0.3s
+
+    &:hover
+      background-color: $main-color

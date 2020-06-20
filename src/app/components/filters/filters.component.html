@@ -1,0 +1,69 @@
+<form class="filters">
+  <div class="filters__item">
+    <app-field
+      class="filters__field"
+      [(value)]="form.title"
+      type="text"
+      name="title"
+      placeholder="Title"
+    >
+    </app-field>
+  </div>
+
+  <div class="filters__item" [class.filters__item_hidden]="!isVisible">
+    <app-field
+      class="filters__field"
+      [(value)]="form.from"
+      type="date"
+      name="fromDate"
+      placeholder="From date"
+    >
+    </app-field>
+  </div>
+
+  <div class="filters__item" [class.filters__item_hidden]="!isVisible">
+    <app-field
+      class="filters__field"
+      [(value)]="form.to"
+      type="date"
+      name="toDate"
+      placeholder="To date"
+    >
+    </app-field>
+  </div>
+
+  <div class="filters__item" [class.filters__item_hidden]="!isVisible">
+    <app-field
+      class="filters__field"
+      [(value)]="form.owner"
+      type="text"
+      name="owner"
+      placeholder="Author"
+    >
+    </app-field>
+  </div>
+
+  <div class="filters__item" [class.filters__item_hidden]="!isVisible">
+    <app-field
+      class="filters__field"
+      [(value)]="form.sortBy"
+      [options]="sortList"
+      type="select"
+      name="sortBy"
+      placeholder="Sort By"
+    >
+    </app-field>
+  </div>
+
+  <div class="filters__item">
+    <app-btn class="filters__btn" (click)="handleSubmit()">
+      Find
+    </app-btn>
+
+    <app-btn class="filters__toggler" (click)="isVisible = !isVisible">
+      <app-svg [icon]="isVisible ? 'cross' : 'filter'"></app-svg>
+    </app-btn>
+  </div>
+
+  <hr class="filters__separator">
+</form>

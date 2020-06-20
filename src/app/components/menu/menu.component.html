@@ -1,0 +1,48 @@
+<div class="menu">
+  <ng-template [ngIf]="authService.authInfo">
+    <app-btn
+      class="menu__tablet-btn"
+      [isText]="true"
+      (click)="isMenuVisible = !isMenuVisible"
+      >
+      {{ authService.authInfo.login }}
+    </app-btn>
+
+    <app-auth-menu
+      class="menu__auth"
+      [class.menu__auth_visible]="isMenuVisible"
+      [login]="authService.authInfo.login"
+      (signOut)="authService.signOut()"
+      (click)="closeMenu.emit()"
+      (clickOutside)="isMenuVisible = false"
+    >
+    </app-auth-menu>
+  </ng-template>
+
+  <ng-template [ngIf]="!authService.authInfo">
+    <app-btn
+      class="menu__btn"
+      [isText]="true"
+      (click)="showAuth('signin')"
+    >
+      Sign In
+    </app-btn>
+
+    <app-btn
+      class="menu__btn"
+      [isText]="true"
+      (click)="showAuth('signup')"
+    >
+      Sign Up
+    </app-btn>
+
+    <app-sign-up
+      class="menu__sign-up"
+      *ngIf="formType"
+      [formType]="formType"
+      (close)="showAuth()"
+      (clickOutside)="showAuth()"
+    >
+    </app-sign-up>
+  </ng-template>
+</div>

@@ -1,0 +1,41 @@
+@import "../../../variables"
+
+.filters
+  display: flex
+  flex-wrap: wrap
+  align-items: flex-start
+
+  &__toggler
+    margin-left: auto
+
+    +for-tablet-up
+      display: none
+
+    & ::ng-deep .btn
+      padding: 6px
+
+  &__item
+    width: 100%
+    display: flex
+    margin-bottom: 15px
+    padding-left: 6px
+    padding-right: 6px
+
+    +for-tablet-up
+      width: 33.3333333%
+
+    &_hidden
+      display: none
+
+      +for-tablet-up
+        display: flex
+
+  &__field
+    width: 100%
+
+  &__btn ::ng-deep .btn
+    padding-top: 6px
+    padding-bottom: 7px
+
+  &__separator
+    margin-bottom: 15px

@@ -1,0 +1,38 @@
+<form class="edit-page">
+  <h1 *ngIf="hasTitle">
+    {{ pagesService.currentPage.title }}
+  </h1>
+
+  <app-field
+    class="edit-page__field"
+    *ngIf="!hasTitle"
+    [(value)]="form.title"
+    placeholder="Name of your story"
+  ></app-field>
+
+  <app-field
+    class="edit-page__field edit-page__field_area"
+    [(value)]="form.body"
+    row="10"
+    type="textarea"
+    placeholder="Text of your story"
+  ></app-field>
+
+  <ul class="edit-page__list">
+    <li class="edit-page__el" *ngFor="let option of getOptions()">
+      <app-field
+        class="edit-page__option"
+        [(value)]="form.options[option]"
+        placeholder="Add option of choice"
+      ></app-field>
+
+      <app-btn (click)="removeOption(option)">
+        <app-svg class="btn__icon" icon="cross"></app-svg>
+      </app-btn>
+    </li>
+  </ul>
+
+  <app-btn class="edit-page__btn" (click)="clearOptions()">Clear all</app-btn> 
+
+  <app-btn class="edit-page__btn" (click)="handleSave()">Save</app-btn>
+</form>

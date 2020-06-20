@@ -1,0 +1,75 @@
+@import "../../../variables"
+
+.sign-up
+  position: absolute
+  top: 0
+  right: -10px
+  z-index: 1
+  display: flex
+  flex-direction: column
+  width: calc(100vw - 20px)
+  max-height: 100vh
+  padding: 30px 25px
+  background-image: url('../../../assets/images/inner-bg.png')
+  background-size: 100% 100%
+
+  +for-tablet-up
+    top: calc(100% + 15px)
+    right: 0
+    width: 320px
+
+  &:before,
+  &:after
+    position: absolute
+    left: -8px
+    right: -8px
+    height: 40px
+    background-position: center
+    background-repeat: no-repeat
+    background-size: 100% 100%
+    content: ''
+
+  &:before
+    top: -15px
+    background-image: url('../../../assets/images/inner-top-bg.png')
+
+  &:after
+    bottom: -15px
+    background-image: url('../../../assets/images/inner-bottom-bg.png')
+
+  &__close
+    position: absolute
+    top: -5px
+    right: 35px
+
+    +for-tablet-up
+      right: 15px
+
+  &__label
+    align-self: flex-start
+    margin-bottom: 8px
+
+  &__photo
+    max-width: 150px
+    margin-bottom: 15px
+    font-size: 0
+
+    &:last-of-type
+      margin-bottom: 20px
+
+  &__photo-img
+    max-width: 100%
+    border-radius: 4px
+
+  &__field
+    margin-bottom: 15px
+
+    &:last-of-type
+      margin-bottom: 20px
+
+  &__upload
+    display: none
+
+  &__btn ::ng-deep .btn
+    padding-top: 8px
+    padding-bottom: 8px

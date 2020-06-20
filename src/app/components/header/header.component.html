@@ -1,0 +1,29 @@
+<header class="header">
+  <div class="header__inner">
+    <div class="header__logo-wrapper">
+      <a [routerLink]="'/'">
+        <img
+          class="header__logo"
+          src="assets/images/logo.svg"
+          alt="Made Up World Logo"
+        />
+      </a>
+    </div>
+
+    <div class="header__mobile">
+      <app-btn (click)="isMobileMenuVisible = !isMobileMenuVisible">
+        <app-svg [icon]="isMobileMenuVisible ? 'cross' : 'burger'"></app-svg>
+      </app-btn>
+    </div>
+
+    <div class="header__content" [class.header__content_visible]="isMobileMenuVisible">
+      <app-nav class="header__nav"></app-nav>
+
+      <app-menu
+        class="header__menu"
+        (closeMenu)="isMobileMenuVisible = false"
+        (clickOutside)="isMobileMenuVisible = false"
+      ></app-menu>
+    </div>
+  </div>
+</header>

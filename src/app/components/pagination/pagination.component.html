@@ -1,0 +1,38 @@
+<ul class="pagination">
+  <ng-template *ngIf="pageNumber > 4">
+    <li class="pagination__item">
+      <app-btn [isSmall]="true" (click)="click.emit(1)">
+        <app-svg icon="chevronDouble"></app-svg>
+      </app-btn>
+    </li>
+
+    <li class="pagination__item"></li>
+      <app-btn [isSmall]="true" (click)="click.emit(pageNumber - 1)">
+        <app-svg icon="chevron"></app-svg>
+      </app-btn>
+  </ng-template>
+
+  <li class="pagination__item" *ngFor="let page of getPageList()">
+    <app-btn
+      [disabled]="getLastPage(page) === pageNumber"
+      [isSmall]="true"
+      (click)="click.emit(getLastPage(page))"
+    >
+      {{ page + 1 }}
+    </app-btn>
+  </li>
+
+  <ng-template *ngIf="pageNumber <= pageCount - 4">
+    <li class="pagination__item">
+      <app-btn [isSmall]="true" (click)="click.emit(pageNumber + 1)">
+        <app-svg class="pagination__last-icon" icon="chevron"></app-svg>
+      </app-btn>
+    </li>
+
+    <li class="pagination__item">
+      <app-btn [isSmall]="true" (click)="click.emit(pageCount)">
+        <app-svg class="pagination__last-icon" icon="chevronDouble"></app-svg>
+      </app-btn>
+    </li>
+  </ng-template>
+</ul>
