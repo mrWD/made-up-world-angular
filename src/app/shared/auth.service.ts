@@ -22,7 +22,7 @@ export class AuthService {
       return;
     }
 
-    this.http.get<AuthInfo>('http://localhost:5000/api/auth', {
+    this.http.get<AuthInfo>('https://made-up-world-nodejs.herokuapp.com/api/auth', {
       headers: { Authorization: token },
     })
       .pipe(tap(response => {
@@ -32,14 +32,14 @@ export class AuthService {
   }
 
   signUp(body): void {
-    this.http.post<string>('http://localhost:5000/api/auth/signup', body)
+    this.http.post<string>('https://made-up-world-nodejs.herokuapp.com/api/auth/signup', body)
       .pipe(tap(response => {
         const formData = new FormData();
 
         formData.append('userId', response);
         formData.append('file', body.file);
 
-        this.http.post('http://localhost:5000/api/upload/image', formData, {
+        this.http.post('https://made-up-world-nodejs.herokuapp.com/api/upload/image', formData, {
           headers: {
             'Content-type': 'multipart/form-data; charset=utf8;',
           },
@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   signIn(body): void {
-    this.http.post<{ token: string }>('http://localhost:5000/api/auth/signin', body)
+    this.http.post<{ token: string }>('https://made-up-world-nodejs.herokuapp.com/api/auth/signin', body)
       .pipe(tap(response => {
         if (response.token) {
           localStorage.setItem('TOKEN', response.token);

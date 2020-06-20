@@ -37,7 +37,7 @@ export class UsersService {
   constructor(public http: HttpClient) {}
 
   getUserInfo(login: string): void {
-    this.http.post<GetUserInfoResponse>('http://localhost:5000/api/users/user-info', { login })
+    this.http.post<GetUserInfoResponse>('https://made-up-world-nodejs.herokuapp.com/api/users/user-info', { login })
       .pipe(tap(response => {
         this.userInfo = response.user;
         this.destination = response.destination;
@@ -46,7 +46,7 @@ export class UsersService {
   }
 
   getUserList(body): void {
-    this.http.post<GetUserListResponse>('http://localhost:5000/api/users/all', body)
+    this.http.post<GetUserListResponse>('https://made-up-world-nodejs.herokuapp.com/api/users/all', body)
       .pipe(tap(response => {
         this.pageNumber = response.page;
         this.pageCount = response.pages;
@@ -63,7 +63,7 @@ export class UsersService {
       return;
     }
 
-    this.http.post('http://localhost:5000/api/users/follow', { login }, {
+    this.http.post('https://made-up-world-nodejs.herokuapp.com/api/users/follow', { login }, {
       headers: { Authorization: token },
     })
     .subscribe();
@@ -76,7 +76,7 @@ export class UsersService {
       return;
     }
 
-    this.http.post('http://localhost:5000/api/users/unfollow', { login }, {
+    this.http.post('https://made-up-world-nodejs.herokuapp.com/api/users/unfollow', { login }, {
       headers: { Authorization: token },
     })
     .subscribe();

@@ -30,7 +30,7 @@ export class PagesService {
 
   getPage(body, callback): void {
     try {
-      this.http.post<Page>('http://localhost:5000/api/editing/edit', body, {
+      this.http.post<Page>('https://made-up-world-nodejs.herokuapp.com/api/editing/edit', body, {
         headers: { Authorization: localStorage.getItem('TOKEN') },
       })
         .pipe(tap(response => this.currentPage = response))
@@ -42,7 +42,7 @@ export class PagesService {
 
   savePage(body, callback): void {
     try {
-      this.http.post<SaveResponse>('http://localhost:5000/api/editing/save', body, {
+      this.http.post<SaveResponse>('https://made-up-world-nodejs.herokuapp.com/api/editing/save', body, {
         headers: { Authorization: localStorage.getItem('TOKEN') },
       })
         .pipe(tap(callback))
@@ -54,7 +54,7 @@ export class PagesService {
 
   removePage(storyURL: string): void {
     try {
-      this.http.post<Page>('http://localhost:5000/api/editing/remove-page', { storyURL }, {
+      this.http.post<Page>('https://made-up-world-nodejs.herokuapp.com/api/editing/remove-page', { storyURL }, {
         headers: { Authorization: localStorage.getItem('TOKEN') },
       })
         .pipe(tap(response => this.currentPage = response))

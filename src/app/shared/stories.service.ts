@@ -39,7 +39,7 @@ export class StoriesService {
     const token = localStorage.getItem('TOKEN');
 
     try {
-      this.http.post<GetStoryListResponse>('http://localhost:5000/api/reading/all', body, {
+      this.http.post<GetStoryListResponse>('https://made-up-world-nodejs.herokuapp.com/api/reading/all', body, {
         headers: { ...(token && { Authorization: token }) },
       })
         .pipe(tap(response => {
@@ -55,7 +55,7 @@ export class StoriesService {
 
   getStory(body) {
     try {
-      this.http.post<Story>('http://localhost:5000/api/reading/page', body)
+      this.http.post<Story>('https://made-up-world-nodejs.herokuapp.com/api/reading/page', body)
         .pipe(tap(response => {
           this.currentStory = response;
         }))
@@ -67,7 +67,7 @@ export class StoriesService {
 
   getAllPages(storyURL) {
     try {
-      this.http.post<Story>('http://localhost:5000/api/editing/all', { storyURL }, {
+      this.http.post<Story>('https://made-up-world-nodejs.herokuapp.com/api/editing/all', { storyURL }, {
         headers: { Authorization: localStorage.getItem('TOKEN') },
       })
         .pipe(tap(response => {
@@ -81,7 +81,7 @@ export class StoriesService {
 
   saveStory(body) {
     try {
-      this.http.post<Story>('http://localhost:5000/api/editing/save-story', body, {
+      this.http.post<Story>('https://made-up-world-nodejs.herokuapp.com/api/editing/save-story', body, {
         headers: { Authorization: localStorage.getItem('TOKEN') },
       })
         .pipe(tap(response => {
@@ -95,7 +95,7 @@ export class StoriesService {
 
   removeStory(storyURL) {
     try {
-      this.http.post<Story>('http://localhost:5000/api/editing/remove-story', storyURL, {
+      this.http.post<Story>('https://made-up-world-nodejs.herokuapp.com/api/editing/remove-story', storyURL, {
         headers: { Authorization: localStorage.getItem('TOKEN') },
       })
         .pipe(tap(response => {
@@ -109,7 +109,7 @@ export class StoriesService {
 
   publishStory(storyURL) {
     try {
-      this.http.post<Story>('http://localhost:5000/api/editing/publish', { storyURL }, {
+      this.http.post<Story>('https://made-up-world-nodejs.herokuapp.com/api/editing/publish', { storyURL }, {
         headers: { Authorization: localStorage.getItem('TOKEN') },
       })
         .pipe(tap())
@@ -121,7 +121,7 @@ export class StoriesService {
 
   unpublishStory(storyURL) {
     try {
-      this.http.post<Story>('http://localhost:5000/api/editing/unpublish', { storyURL }, {
+      this.http.post<Story>('https://made-up-world-nodejs.herokuapp.com/api/editing/unpublish', { storyURL }, {
         headers: { Authorization: localStorage.getItem('TOKEN') },
       })
         .pipe(tap())
