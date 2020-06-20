@@ -4,7 +4,11 @@ node_js:
 os: linux
 dist: xenial
 addons:
-  chrome: stable
+  chrome:
+    switches:
+      - "--headless"
+      - "--disable-gpu"
+      - "--no-sandbox"
 branches:
   only:
     - master
