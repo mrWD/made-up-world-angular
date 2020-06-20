@@ -1,24 +1,24 @@
 language: node_js
 node_js:
-  - 12
+- 12
 os: linux
 dist: trusty
 branches:
   only:
-    - master
+  - master
 before_script:
-  - npm install -g @angular/cli
+- npm install -g @angular/cli
 script:
-  - ng lint
-  - ng build --prod --base-href https://t-palmer.github.io/travis-demo/
+- ng lint
+- ng build --prod --base-href https://t-palmer.github.io/travis-demo/
 jobs:
   include:
-    - stage: test
+  - stage: test
 deploy:
   provider: heroku
   strategy: api
   api_key:
-    secure: 77fbb2bf-d431-480e-a48f-f20f7ad96367
+    secure: BJpNKkjI0JHZD3u/qBdCdFQQesufMOmKRvv41/MdvAaKv7spRaTi4nyZxmOvE92FLYcYjV+ISfZvoGBNptRvOrCMtU2ZmnyZf1fZYNh+vlwDyAy6oVJr9YcZVNsP/hidpPoEVmih+rmAmPMyVN13LDw0DE6o7ONEF6BmL/kfBFC/v3meRxltKnN1ut0fyFvOF1+8S9h6A4mxjELCPVDJnvBTyy+Uae6+U1pUIYFlDwF7R2NuXawovm998gxvmbkS1HXUDIg4HE1qBAs8pRT8UEQ6GB2PRs1tosDqKXtvNevZgevgCCZC5ocWe5z54Z2+XKsCS6IPo6Pv7lvxJVCKM853kp8jeFCTeJq5PTXYevyGo7wSo8xzf+EcOiyTgZ2kiJqHjD8DY4V7K6CLYAD1SJ2I1A/jIz+1pn2OVbe1oNHZqDYtdoYT27b9feHh6qBpx1giEqSY3puUeLVEjjBQBlUxvak9K44cgedE/5/V4cekbZyXaiDsM/bK1TqHQ63mJocx6yKa7lfFE5L1bOwwFpiheVzTNlKb70DcQdfsaP3a7EH9XODFN2C3c2bHNYIqlhMpZ8xFTKREweno7Q2xr/bbzoMuQHSJW610QLT6I6wQk8RZjLyw5JVIEoGbpB+ZIT++XIaxPhHPXpDq1err39+q2K2j8WdF0Xy5NPfxbHc=
   app: made-up-world-angular
   on:
     repo: mrWD/made-up-world-angular
