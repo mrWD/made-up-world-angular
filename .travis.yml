@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - 12
+os: linux
+dist: xenial
+branches:
+  only:
+    - master
+jobs:
+  include:
+    - stage: test
+      script:
+        - yarn test:unit
+deploy:
+  provider: heroku
+  strategy: api
+  api_key:
+    secure: 77fbb2bf-d431-480e-a48f-f20f7ad96367
+  app: made-up-world-angular
+  on:
+    repo: mrWD/made-up-world-angular
