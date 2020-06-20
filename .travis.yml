@@ -9,8 +9,6 @@ branches:
 jobs:
   include:
     - stage: test
-      script:
-        - yarn test:unit
 deploy:
   provider: heroku
   strategy: api
