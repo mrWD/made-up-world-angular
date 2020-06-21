@@ -10,13 +10,13 @@
   </li>
 
   <li class="auth-menu__item">
-    <a
-      class="auth-menu__btn auth-menu__link"
-      routerLink="edit-page/"
-      (click)="click.emit()"
+    <app-btn
+      class="auth-menu__btn"
+      [isText]="true"
+      (click)="createNewStory()"
     >
-      New Story
-    </a>
+    New Story
+    </app-btn>
   </li>
 
   <li class="auth-menu__item">

@@ -69,7 +69,7 @@
 
     <app-list
       class="user__follow-list"
-      *ngIf="usersService.userInfo && usersService.userInfo.followings"
+      *ngIf="usersService.userInfo?.followings[0]"
       title="Followings"
       routeName="user"
       routeProp="login"
@@ -90,7 +90,7 @@
 
     <app-list
       class="user__follow-list"
-      *ngIf="usersService.userInfo && usersService.userInfo.followers"
+      *ngIf="usersService.userInfo?.followers[0]"
       title="Followers"
       routeName="user"
       routeProp="login"

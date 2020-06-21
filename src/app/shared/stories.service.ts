@@ -12,6 +12,7 @@ export interface Story {
   };
   options: string[];
   nextPages: string[];
+  isFirst: boolean;
   isPublished?: boolean;
 }
 
@@ -129,5 +130,9 @@ export class StoriesService {
     } catch (err) {
       console.error(err);
     }
+  }
+
+  clearList() {
+    this.pageList = [];
   }
 }

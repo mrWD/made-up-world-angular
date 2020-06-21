@@ -31,20 +31,21 @@ export class UserComponent implements OnInit {
   }
 
   isUser(): boolean {
-    return this.usersService.userInfo && this.checkLogin(this.usersService.userInfo.login);
+    return this.usersService.userInfo && this.checkLogin(this.usersService.userInfo?.login);
   }
 
   isFollowed(): boolean {
-    return this.usersService.userInfo.followers?.some(({ login }: User) => this.checkLogin(login));
+    return this.usersService.userInfo
+      .followers?.some((item: User) => this.checkLogin(item?.login));
   }
 
   isFollower(): boolean {
     return this.usersService.userInfo
-      .followings?.some(({ login }: User) => this.checkLogin(login));
+      .followings?.some((item: User) => this.checkLogin(item?.login));
   }
 
   checkLogin(value: string): boolean {
-    return this.authService.authInfo && this.authService.authInfo.login === value;
+    return this.authService.authInfo?.login === value;
   }
 
   togglePublishment(storyInfo: Story): void {
@@ -56,7 +57,7 @@ export class UserComponent implements OnInit {
   }
 
   isFollowedFilter(userList: { login: string }[], user: User): boolean {
-    return !userList.some(({ login }) => login === user.login);
+    return !userList.some((item) => item?.login === user.login);
   }
 
   checkPublishing(story: Story): boolean {

@@ -67,18 +67,20 @@ export class EditPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    const body = {
-      pageId: this.pageId,
-      storyURL: this.storiesService.pageList[0]?.storyURL,
-    };
-
-    const callback = (response) => {
-      this.form = {
-        ...this.form,
-        ...response,
+    if (this.pageId || this.storiesService.pageList) {
+      const body = {
+        pageId: this.pageId,
+        storyURL: this.storiesService.pageList[0]?.storyURL,
       };
-    };
-
-    this.pagesService.getPage(body, callback);
+  
+      const callback = (response) => {
+        this.form = {
+          ...this.form,
+          ...response,
+        };
+      };
+  
+      this.pagesService.getPage(body, callback);
+    }
   }
 }

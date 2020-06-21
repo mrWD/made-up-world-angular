@@ -2,6 +2,7 @@
   <div class="story__head">
     <app-btn
       [isSmall]="true"
+      *ngIf="!storiesService.currentStory.isFirst"
       (click)="storiesService.getStory({ storyURL: storyURL })"
     >
       <app-svg icon="return"></app-svg>
@@ -17,8 +18,8 @@
   <p class="story__text">{{ storiesService.currentStory.body }}</p>
 
   <ul class="story__list" *ngIf="storiesService.currentStory.options[0]">
-    <ng-template *ngFor="let item of storiesService.currentStory.options; let i = $index">
-      <li class="story__el" *ngIf="item && storiesService.currentStory.nextPages[i]">
+    <ng-template ngFor let-item let-i="index" [ngForOf]="storiesService.currentStory.options">
+      <li class="story__el">
         <app-btn class="story__btn" (click)="nextPage(storiesService.currentStory.nextPages[i])">
           {{ item }}
         </app-btn>
