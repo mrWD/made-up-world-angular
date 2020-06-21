@@ -12,7 +12,7 @@ export class AuthMenuComponent {
   @Output() click = new EventEmitter();
   @Output() signOut = new EventEmitter();
 
-  constructor(public storiesService: StoriesService,public router: Router) {}
+  constructor(public storiesService: StoriesService, public router: Router) {}
 
   getUserPage(): string {
     return `/user/${this.login}`;
