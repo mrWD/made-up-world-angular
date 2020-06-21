@@ -32,18 +32,23 @@ export class AuthService {
   }
 
   signUp(body): void {
-    this.http.post<string>('https://made-up-world-nodejs.herokuapp.com/api/auth/signup', body)
+    this.http.post<{ token: string }>('https://made-up-world-nodejs.herokuapp.com/api/auth/signup', body)
       .pipe(tap(response => {
-        const formData = new FormData();
+        if (response.token) {
+          localStorage.setItem('TOKEN', response.token);
 
-        formData.append('userId', response);
-        formData.append('file', body.file);
+          this.getAuthInfo();
+        }
+        // const formData = new FormData();
 
-        this.http.post('https://made-up-world-nodejs.herokuapp.com/api/upload/image', formData, {
-          headers: {
-            'Content-type': 'multipart/form-data; charset=utf8;',
-          },
-        });
+        // formData.append('userId', response);
+        // formData.append('file', body.file);
+
+        // this.http.post('https://made-up-world-nodejs.herokuapp.com/api/upload/image', formData, {
+        //   headers: {
+        //     'Content-type': 'multipart/form-data; charset=utf8;',
+        //   },
+        // });
       }))
       .subscribe();
   }
