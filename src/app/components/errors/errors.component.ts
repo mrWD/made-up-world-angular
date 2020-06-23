@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { RequestStatusService } from 'src/app/shared/requestStatus.service';
 
 @Component({

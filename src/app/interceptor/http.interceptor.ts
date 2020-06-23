@@ -32,6 +32,6 @@ export class HttpConfigInterceptor implements HttpInterceptor {
       finalize(() => {
         this.requestStatus.updateRequestCount();
       })
-    )
+    );
   }
 }
