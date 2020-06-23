@@ -40,7 +40,7 @@ export class UsersService {
   constructor(public http: HttpClient) {}
 
   getUserInfo(login: string): void {
-    this.http.post<GetUserInfoResponse>(`${environment.API_URL}/users/user-info`, { login })
+    this.http.post<GetUserInfoResponse>('/users/user-info', { login })
       .pipe(tap(response => {
         this.userInfo = response.user;
         this.destination = response.destination;
@@ -49,7 +49,7 @@ export class UsersService {
   }
 
   getUserList(body): void {
-    this.http.post<GetUserListResponse>(`${environment.API_URL}/users/all`, body)
+    this.http.post<GetUserListResponse>('/users/all', body)
       .pipe(tap(response => {
         this.pageNumber = response.page;
         this.pageCount = response.pages;
@@ -66,7 +66,7 @@ export class UsersService {
       return;
     }
 
-    this.http.post(`${environment.API_URL}/users/follow`, { login }, {
+    this.http.post('/users/follow', { login }, {
       headers: { Authorization: token },
     })
     .subscribe();
@@ -79,7 +79,7 @@ export class UsersService {
       return;
     }
 
-    this.http.post(`${environment.API_URL}/users/unfollow`, { login }, {
+    this.http.post('/users/unfollow', { login }, {
       headers: { Authorization: token },
     })
     .subscribe();

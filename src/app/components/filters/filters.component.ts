@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { StoriesService } from 'src/app/shared/stories.service';
+import { Router } from '@angular/router';
 
 export interface Form {
   title: string | null;
@@ -38,5 +40,11 @@ export class FiltersComponent {
     { label: 'Date Reverse', value: '-createdAt' },
   ];
 
-  handleSubmit() {}
+  constructor(public storiesService: StoriesService, public router: Router) {}
+
+  handleSubmit() {
+    this.router.navigate([], { queryParams: this.form });
+
+    this.storiesService.getStoryList(this.form);
+  }
 }

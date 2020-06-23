@@ -1,0 +1,15 @@
+<ul class="errors">
+  <li class="errors__item" *ngFor="let item of requestStatusService.errors">
+    <span class="errors__text">{{ item }}</span>
+
+    <app-btn
+      class="errors__btn"
+      [isSmall]="true"
+      [isError]="true"
+      [isText]="true"
+      (click)="requestStatusService.removeError(item)"
+    >
+      <app-svg icon="cross"></app-svg>
+    </app-btn>
+  </li>
+</ul>

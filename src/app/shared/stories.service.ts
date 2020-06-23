@@ -43,7 +43,7 @@ export class StoriesService {
     const token = localStorage.getItem(TOKEN);
 
     try {
-      this.http.post<GetStoryListResponse>(`${environment.API_URL}/reading/all`, body, {
+      this.http.post<GetStoryListResponse>('/reading/all', body, {
         headers: { ...(token && { Authorization: token }) },
       })
         .pipe(tap(response => {
@@ -59,7 +59,7 @@ export class StoriesService {
 
   getStory(body) {
     try {
-      this.http.post<Story>(`${environment.API_URL}/reading/page`, body)
+      this.http.post<Story>('/reading/page', body)
         .pipe(tap(response => {
           this.currentStory = response;
         }))
@@ -71,7 +71,7 @@ export class StoriesService {
 
   getAllPages(storyURL) {
     try {
-      this.http.post<Story>(`${environment.API_URL}/editing/all`, { storyURL }, {
+      this.http.post<Story>('/editing/all', { storyURL }, {
         headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap(response => {
@@ -85,7 +85,7 @@ export class StoriesService {
 
   saveStory(body) {
     try {
-      this.http.post<Story>(`${environment.API_URL}/editing/save-story`, body, {
+      this.http.post<Story>('/editing/save-story', body, {
         headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap(response => {
@@ -99,7 +99,7 @@ export class StoriesService {
 
   removeStory(storyURL) {
     try {
-      this.http.post<Story>(`${environment.API_URL}/editing/remove-story`, storyURL, {
+      this.http.post<Story>('/editing/remove-story', storyURL, {
         headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap(response => {
@@ -113,7 +113,7 @@ export class StoriesService {
 
   publishStory(storyURL) {
     try {
-      this.http.post<Story>(`${environment.API_URL}/editing/publish`, { storyURL }, {
+      this.http.post<Story>('/editing/publish', { storyURL }, {
         headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap())
@@ -125,7 +125,7 @@ export class StoriesService {
 
   unpublishStory(storyURL) {
     try {
-      this.http.post<Story>(`${environment.API_URL}/editing/unpublish`, { storyURL }, {
+      this.http.post<Story>('/editing/unpublish', { storyURL }, {
         headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap())

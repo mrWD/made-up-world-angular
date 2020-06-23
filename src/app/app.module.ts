@@ -1,15 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ClickOutsideModule } from 'ng-click-outside';
 
 import { AppRoutingModule } from './app-routing.module';
+
+import { HttpConfigInterceptor } from './interceptor/http.interceptor';
+
 import { AppComponent } from './app.component';
 
 import { SVGComponent } from './components/svg/svg.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { ErrorsComponent } from './components/errors/errors.component';
 import { BtnComponent } from './components/btn/btn.component';
 import { PhotoComponent } from './components/photo/photo.component';
 import { FieldComponent } from './components/field/field.component';
@@ -37,6 +41,7 @@ import { UserComponent } from './pages/user/user.component';
     SVGComponent,
     AppComponent,
     LoaderComponent,
+    ErrorsComponent,
     BtnComponent,
     FieldComponent,
     PhotoComponent,
@@ -64,7 +69,7 @@ import { UserComponent } from './pages/user/user.component';
     HttpClientModule,
     ClickOutsideModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

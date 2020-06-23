@@ -33,7 +33,7 @@ export class PagesService {
 
   getPage(body, callback): void {
     try {
-      this.http.post<Page>(`${environment.API_URL}/editing/edit`, body, {
+      this.http.post<Page>('/editing/edit', body, {
         headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap(response => this.currentPage = response))
@@ -45,7 +45,7 @@ export class PagesService {
 
   savePage(body, callback): void {
     try {
-      this.http.post<SaveResponse>(`${environment.API_URL}/editing/save`, body, {
+      this.http.post<SaveResponse>('/editing/save', body, {
         headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap(callback))
@@ -57,7 +57,7 @@ export class PagesService {
 
   removePage(storyURL: string): void {
     try {
-      this.http.post<Page>(`${environment.API_URL}/editing/remove-page`, { storyURL }, {
+      this.http.post<Page>('/editing/remove-page', { storyURL }, {
         headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap(response => this.currentPage = response))

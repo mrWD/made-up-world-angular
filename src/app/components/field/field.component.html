@@ -16,7 +16,7 @@
     type="date"
     [ngModel]="value"
     [name]="name"
-    [attr.data-value]="value | date:'dd.MM.yyyy' || placeholder"
+    [attr.data-value]="(value | date:'dd.MM.yyyy') || placeholder"
     (ngModelChange)="handleInput($event)"
   />
 
@@ -26,6 +26,7 @@
     [ngModel]="value"
     [name]="name"
     [attr.placeholder]="placeholder"
+    (ngModelChange)="handleInput($event)"
   >
     <option
       *ngFor="let item of options"

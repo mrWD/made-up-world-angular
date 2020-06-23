@@ -25,7 +25,7 @@ export class AuthService {
       return;
     }
 
-    this.http.get<AuthInfo>(`${environment.API_URL}/auth`, {
+    this.http.get<AuthInfo>('/auth', {
       headers: { Authorization: token },
     })
       .pipe(tap(response => {
@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   signUp(body): void {
-    this.http.post<{ token: string }>(`${environment.API_URL}/auth/signup`, body)
+    this.http.post<{ token: string }>('/auth/signup', body)
       .pipe(tap(response => {
         if (response.token) {
           localStorage.setItem(TOKEN, response.token);
@@ -47,7 +47,7 @@ export class AuthService {
   }
 
   signIn(body): void {
-    this.http.post<{ token: string }>(`${environment.API_URL}/auth/signin`, body)
+    this.http.post<{ token: string }>('/auth/signin', body)
       .pipe(tap(response => {
         if (response.token) {
           localStorage.setItem(TOKEN, response.token);
