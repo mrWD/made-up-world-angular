@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
+import { environment } from 'src/environments/environment';
+import { TOKEN } from 'src/app/constants/token';
+
 export interface Page {
   id: string;
   pageId: string;
@@ -30,8 +33,8 @@ export class PagesService {
 
   getPage(body, callback): void {
     try {
-      this.http.post<Page>('https://made-up-world-nodejs.herokuapp.com/api/editing/edit', body, {
-        headers: { Authorization: localStorage.getItem('TOKEN') },
+      this.http.post<Page>(`${environment.API_URL}/editing/edit`, body, {
+        headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap(response => this.currentPage = response))
         .subscribe(callback);
@@ -42,8 +45,8 @@ export class PagesService {
 
   savePage(body, callback): void {
     try {
-      this.http.post<SaveResponse>('https://made-up-world-nodejs.herokuapp.com/api/editing/save', body, {
-        headers: { Authorization: localStorage.getItem('TOKEN') },
+      this.http.post<SaveResponse>(`${environment.API_URL}/editing/save`, body, {
+        headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap(callback))
         .subscribe();
@@ -54,8 +57,8 @@ export class PagesService {
 
   removePage(storyURL: string): void {
     try {
-      this.http.post<Page>('https://made-up-world-nodejs.herokuapp.com/api/editing/remove-page', { storyURL }, {
-        headers: { Authorization: localStorage.getItem('TOKEN') },
+      this.http.post<Page>(`${environment.API_URL}/editing/remove-page`, { storyURL }, {
+        headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap(response => this.currentPage = response))
         .subscribe();

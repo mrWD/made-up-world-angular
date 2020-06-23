@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
+import { environment } from 'src/environments/environment';
+import { TOKEN } from 'src/app/constants/token';
+
 export interface Story {
   storyURL: string;
   title: string;
@@ -37,10 +40,10 @@ export class StoriesService {
   constructor(private http: HttpClient) {}
 
   getStoryList(body = {}) {
-    const token = localStorage.getItem('TOKEN');
+    const token = localStorage.getItem(TOKEN);
 
     try {
-      this.http.post<GetStoryListResponse>('https://made-up-world-nodejs.herokuapp.com/api/reading/all', body, {
+      this.http.post<GetStoryListResponse>(`${environment.API_URL}/reading/all`, body, {
         headers: { ...(token && { Authorization: token }) },
       })
         .pipe(tap(response => {
@@ -56,7 +59,7 @@ export class StoriesService {
 
   getStory(body) {
     try {
-      this.http.post<Story>('https://made-up-world-nodejs.herokuapp.com/api/reading/page', body)
+      this.http.post<Story>(`${environment.API_URL}/reading/page`, body)
         .pipe(tap(response => {
           this.currentStory = response;
         }))
@@ -68,8 +71,8 @@ export class StoriesService {
 
   getAllPages(storyURL) {
     try {
-      this.http.post<Story>('https://made-up-world-nodejs.herokuapp.com/api/editing/all', { storyURL }, {
-        headers: { Authorization: localStorage.getItem('TOKEN') },
+      this.http.post<Story>(`${environment.API_URL}/editing/all`, { storyURL }, {
+        headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap(response => {
           this.pageList = response;
@@ -82,8 +85,8 @@ export class StoriesService {
 
   saveStory(body) {
     try {
-      this.http.post<Story>('https://made-up-world-nodejs.herokuapp.com/api/editing/save-story', body, {
-        headers: { Authorization: localStorage.getItem('TOKEN') },
+      this.http.post<Story>(`${environment.API_URL}/editing/save-story`, body, {
+        headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap(response => {
           this.pageList = response;
@@ -96,8 +99,8 @@ export class StoriesService {
 
   removeStory(storyURL) {
     try {
-      this.http.post<Story>('https://made-up-world-nodejs.herokuapp.com/api/editing/remove-story', storyURL, {
-        headers: { Authorization: localStorage.getItem('TOKEN') },
+      this.http.post<Story>(`${environment.API_URL}/editing/remove-story`, storyURL, {
+        headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap(response => {
           this.pageList = response;
@@ -110,8 +113,8 @@ export class StoriesService {
 
   publishStory(storyURL) {
     try {
-      this.http.post<Story>('https://made-up-world-nodejs.herokuapp.com/api/editing/publish', { storyURL }, {
-        headers: { Authorization: localStorage.getItem('TOKEN') },
+      this.http.post<Story>(`${environment.API_URL}/editing/publish`, { storyURL }, {
+        headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap())
         .subscribe();
@@ -122,8 +125,8 @@ export class StoriesService {
 
   unpublishStory(storyURL) {
     try {
-      this.http.post<Story>('https://made-up-world-nodejs.herokuapp.com/api/editing/unpublish', { storyURL }, {
-        headers: { Authorization: localStorage.getItem('TOKEN') },
+      this.http.post<Story>(`${environment.API_URL}/editing/unpublish`, { storyURL }, {
+        headers: { Authorization: localStorage.getItem(TOKEN) },
       })
         .pipe(tap())
         .subscribe();
