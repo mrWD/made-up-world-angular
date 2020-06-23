@@ -34,12 +34,16 @@
     max-width: 300px
     padding: 20px 15px
 
-  &__btn:not(:last-child)
-    margin-bottom: 15px
+  &__btn
+    & ::ng-deep .btn
+      width: 100%
 
-    +for-tablet-up
-      margin-bottom: 0
-      margin-right: 10px
+    &:not(:last-child)
+      margin-bottom: 15px
+
+      +for-tablet-up
+        margin-bottom: 0
+        margin-right: 10px
 
   &__link
     display: inline-flex
