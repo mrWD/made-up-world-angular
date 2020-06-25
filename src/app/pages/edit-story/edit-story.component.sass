@@ -26,9 +26,6 @@
     &:not(:last-of-type)
       border-bottom: 2px solid $main-color-dark
 
-    &:not(:last-child)
-      margin-bottom: 25px
-
   &__item
     display: block
     max-width: 300px
@@ -37,6 +34,9 @@
   &__btn
     & ::ng-deep .btn
       width: 100%
+
+      +for-tablet-up
+        width: auto
 
     &:not(:last-child)
       margin-bottom: 15px

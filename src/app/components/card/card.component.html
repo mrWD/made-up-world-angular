@@ -35,9 +35,15 @@
     <app-btn
       *ngIf="!card.options || !card.options[0]"
       [isSmall]="true"
-      (click)="changePin.emit({ id: 0, index: 0 })"
+      (click)="changePin.emit({ id: card.id, index: 0 })"
       >
-      Bind next page
+      <span class="card__color-desc">Bind next page</span>
+
+      <div
+        class="card__color"
+        *ngIf="card.nextPages && card.nextPages[0]"
+        [ngStyle]="addBackground(card.nextPages[0])"
+      ></div>
     </app-btn>
 
     <ng-template [ngIf]="card.options">

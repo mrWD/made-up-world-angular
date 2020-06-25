@@ -29,6 +29,9 @@ const groupPageList = (filteredArr: Page[], arr: Page[][]): Page[][] => {
     return isConvinient || some;
   });
 
+  console.log(nextPages);
+  console.log(newFilteredArr);
+
   newArr[index].sort((item1: Page, item2: Page) => {
     const index1 = nextPages.indexOf(item1.pageId);
     const index2 = nextPages.indexOf(item2.pageId);
@@ -118,7 +121,16 @@ export class EditStoryComponent implements OnInit {
   }
 
   setPin(target: string): void {
-    let { nextPages } = this.pagesService.pageList.find(({ id }: Page) => id === this.indexParent);
+    let currentPage = this.storiesService.pageList.find(({ id }: Page) => id === this.indexParent);
+
+    if (!currentPage) {
+      this.changePin({ id: '', index: 0 });
+
+      return;
+    }
+
+    const hasChange = this.changes.find(({ id }) => id === this.indexParent);
+    let { nextPages } = currentPage;
 
     if (!this.changes[0]) {
       nextPages[this.pinnedIndex] = target;
@@ -127,21 +139,34 @@ export class EditStoryComponent implements OnInit {
         id: this.indexParent,
         nextPages,
       }];
+
+      this.changePin({ id: '', index: 0 });
+
+      return;
+    }
+
+    if (!hasChange) {
+      nextPages[this.pinnedIndex] = target;
+
+      this.changes = this.changes.concat({
+        id: this.indexParent,
+        nextPages,
+      });
+
+      this.changePin({ id: '', index: 0 });
+
+      return;
     }
 
     this.changes = this.changes.map((item) => {
       if (item.id === this.indexParent) {
-        return item;
+        item.nextPages[this.pinnedIndex] = target;
       }
 
-      ({ nextPages = [] } = item);
-      nextPages[this.pinnedIndex] = target;
-
-      return {
-        ...item,
-        nextPages,
-      };
+      return item;
     });
+
+    this.changePin({ id: '', index: 0 });
   }
 
   changePin({ id, index }: { id: string, index: number}): void {
@@ -151,7 +176,7 @@ export class EditStoryComponent implements OnInit {
 
   saveChanges() {
     this.storiesService.saveStory({
-      storyURL: this.pagesService.pageList[0].storyURL,
+      storyURL: this.storiesService.pageList[0].storyURL,
       changes: this.changes,
     });
     this.changes = [];
