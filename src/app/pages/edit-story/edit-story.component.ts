@@ -118,7 +118,8 @@ export class EditStoryComponent implements OnInit {
   }
 
   setPin(target: string): void {
-    let currentPage = this.storiesService.pageList.find(({ id }: Page) => id === this.indexParent);
+    const currentPage = this.storiesService.pageList
+      .find(({ id }: Page) => id === this.indexParent);
 
     if (!currentPage) {
       this.changePin({ id: '', index: 0 });
@@ -127,7 +128,7 @@ export class EditStoryComponent implements OnInit {
     }
 
     const hasChange = this.changes.find(({ id }) => id === this.indexParent);
-    let { nextPages } = currentPage;
+    const { nextPages } = currentPage;
 
     if (!this.changes[0]) {
       nextPages[this.pinnedIndex] = target;
