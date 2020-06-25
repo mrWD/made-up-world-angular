@@ -18,9 +18,9 @@ const groupPageList = (filteredArr: Page[], arr: Page[][]): Page[][] => {
   ), []);
 
   const newFilteredArr = filteredArr.filter((item) => {
-    const isConvinient = !nextPages.includes(item.pageId);
+    const isConvinient = !nextPages.includes(item.id);
     const some = newArr[index]
-      .some((prevItem: Page) => prevItem.nextPages?.includes(item.pageId));
+      .some((prevItem: Page) => prevItem.nextPages?.includes(item.id));
 
     if (!isConvinient && !some) {
       newArr[index] = Array.from(new Set([...(newArr[index]), item]));
@@ -29,12 +29,9 @@ const groupPageList = (filteredArr: Page[], arr: Page[][]): Page[][] => {
     return isConvinient || some;
   });
 
-  console.log(nextPages);
-  console.log(newFilteredArr);
-
   newArr[index].sort((item1: Page, item2: Page) => {
-    const index1 = nextPages.indexOf(item1.pageId);
-    const index2 = nextPages.indexOf(item2.pageId);
+    const index1 = nextPages.indexOf(item1.id);
+    const index2 = nextPages.indexOf(item2.id);
 
     if (index1 < index2) {
       return -1;
