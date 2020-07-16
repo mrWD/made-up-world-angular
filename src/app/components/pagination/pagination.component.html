@@ -6,10 +6,11 @@
       </app-btn>
     </li>
 
-    <li class="pagination__item"></li>
+    <li class="pagination__item">
       <app-btn [isSmall]="true" (click)="click.emit(pageNumber - 1)">
         <app-svg icon="chevron"></app-svg>
       </app-btn>
+    </li>
   </ng-template>
 
   <li class="pagination__item" *ngFor="let page of getPageList()">
